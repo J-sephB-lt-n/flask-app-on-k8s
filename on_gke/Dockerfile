@@ -9,6 +9,6 @@ WORKDIR $APP_HOME
 COPY . ./
 
 # Install python dependencies #
-pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app

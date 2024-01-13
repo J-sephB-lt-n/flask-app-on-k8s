@@ -17,6 +17,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+
 @app.route("/system_pause/<nsecs>", methods=["GET"])
 def system_pause(nsecs: str) -> flask.Response:
     logger.info("sleeping %s seconds", nsecs)
