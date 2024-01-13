@@ -20,6 +20,14 @@ gcloud artifacts repositories create $GCP_ARTIFACT_REG_REPO_NAME  \
 # build the docker image and push it to GCP artifact registry #
 gcloud builds submit --tag $GCP_ARTIFACT_REG_REPO_PATH/$GCP_ARTIFACT_REG_CONTAINER_IMG_NAME .
 
+# start the GKE cluster #
+gcloud container clusters create-auto toy-flask-app-gke --location $GCP_REGION
+
+# verify that I have access to the GKE cluster #
+kubectl get nodes
+
+# 
+
 # delete the repository on google cloud artifact registry #
 gcloud artifacts docker images delete $GCP_ARTIFACT_REG_REPO_PATH/$GCP_ARTIFACT_REG_CONTAINER_IMG_NAME
 gcloud artifacts repositories delete $GCP_ARTIFACT_REG_REPO_NAME --location=$GCP_REGION
